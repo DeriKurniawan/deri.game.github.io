@@ -1,0 +1,149 @@
+/* Membuat sebuah aplikasi game quiz sederhana ala
+'Who Wants to be a Milionaire' tapi versi Newbie..
+algritmanya mudah hanya membuat sebuah quiz jika dia mwnjawab benar maka dia akan
+mendapatkan point SP jiika salah maka ia akan mengurangi SP.
+*/
+function perkenalan(name, age, capital){
+  this.xname = name;
+  this.xage = age;
+  this.xcapital = capital;
+  this.sayhello=function(){
+    console.log('Halo '+this.xname+' salam kenal!');
+  }
+  this.perkenalkan=function(){
+    console.log('Perkenalkan saya '+this.xname+', sebagai MC disini!');
+  }
+  this.start=function(){
+    if (this.xage<=17){
+      console.log('Anda masih muda, Belajar lagi, Quiznya susah!');
+    }
+    else if(this.xage>=17 && this.xage<=50){
+      console.log('Modal anda adalah '+this.xcapital+', Modal anda akan berkurang jika salah!')
+    }
+    else{
+      console.log('Anda terlalu tua untuk berfikir, bersenang senaglah!');
+    }
+    console.log('Senang Bertemu dengan mu '+this.xname+', semoga sukses dalam Quiz ini!');
+  }
+}
+
+var quiz1 = {
+  pertanyaan : [
+    {
+      soal : 'Aksara Jepang yang merupakan aksara resmi keagamaan Adalah ?',
+      jawaban : 'siddham',
+      score : 1000000
+    },
+    {
+      soal : 'Yang merupakan saingan Atlanis dan Athena menurut Plato',
+      jawaban : 'lemurian',
+      score : 1000000
+    },
+    {
+      soal : 'Nenek moyang bangsa Dravida',
+      jawaban : 'harappa',
+      score : 2000000
+    },
+    {
+      soal : 'Lambang kebesaran bangsa Arya',
+      jawaban : 'swastika',
+      score : 2000000
+    }
+  ]
+};
+
+var quiz2 = {
+  pertanyaan : [
+    {
+      soal : 'Gugus piramida mengikuti rasi bintang ?',
+      jawaban : 'orion',
+      score : 1500000
+    },
+    {
+      soal : 'Siapa penemu listrik wireless ?',
+      jawaban : 'nikola tesla',
+      score : 1000000
+    },
+    {
+      soal : 'Jika dewa tertinggi yunani adalah Zeus maka dewa tertinggi bangsa nordik adalah',
+      jawaban : 'odin',
+      score : 1500000
+    },
+    {
+      soal : 'web yang menapilkan isi konten tidak wajar dan hanya dapat diakses tertentu saja',
+      jawaban : 'deep web',
+      score : 1000000
+    }
+  ]
+}
+//start programe
+alert('Selamat datang di... \nWHO WANTS TO BE A MILIONAIRE! vKerEE');
+var nama=prompt('Masukkan Nama Anda Sebagai Pemain!');
+var mc='Kardun si muka Kardus';
+var tahunLahir=prompt('masukkan Tahun Kelahiran Anda!');
+var umur=2017-tahunLahir;
+var modal=((Math.random()*umur)*1000000)/10;
+var konfirmasi=confirm('Apakah '+nama+' yakin untuk melanjutkan Quiz?');
+  if(konfirmasi === true){
+    alert('Terima Kasih '+nama+' selamat bermain!');
+  }
+  else{
+    alert('Terima Kasih sudah mencoba!');
+  }
+
+var pemain = new perkenalan(nama, umur, modal);
+var mcAcara = new perkenalan(mc, '27', '1000000');
+
+pemain.sayhello();
+mcAcara.perkenalkan();
+pemain.start();
+
+var jawaban1 = [];
+var uang1 = [];
+var hadiah = 0;
+alert('Kita mulai quiz episode pertama!');
+for(var i=0; i<4; i++){
+  jawaban1[i] = prompt(quiz1.pertanyaan[i].soal);
+  if (jawaban1[i] === quiz1.pertanyaan[i].jawaban){
+    uang1[i] = quiz1.pertanyaan[i].score;
+  }
+  else{
+    uang1[i] = 0;
+  }
+  hadiah =+ uang1[i];
+}
+
+var jawaban2 = [];
+var uang2 = [];
+if (hadiah <=5000000){
+  alert('SELAMAT ! \nScore uang Anda '+hadiah+'!\n Tetapi tidak dapat melanjutkan quiz ke 2');
+}
+else{
+  alert('SELAMAT '+nama+' MENANG!\nScore hadiah '+nama+' adalah : '+hadiah+'!\n Anda bisa melanjutkan Quiz ke 2!');
+  var tanya=confirm('Apakah '+nama+' yakin untuk menlanjutkan quiz selanjutnya?');
+  if (tanya === true){
+    for (var j=0; j<4; j++){
+      jawaban2[j] = prompt(quiz2.pertanyaan[j].soal);
+      if (jawaban2[j] === quiz2.pertanyaan[j].jawaban){
+        uang2[j]=quiz2.pertanyaan[j].score;
+      }
+      else{
+        uang2[j]=0;
+      }
+      hadiah =+ uang2[j];
+    }
+  }
+  else{
+    alert('Terima Kasih Telah bermain Hadiah '+nama+' Adalah '+hadiah+' Silahkan bersenang senang!');
+  }
+}
+
+var bonus = 5000000;
+if (hadiah >=10000000){
+  hadiah =+ bonus;
+  alert('SELAMAT UANG ANDA BERTAMBAH DAN MENDAPATKAN BONUS SEBESAR RP 5000000!');
+  alert('UANG '+nama+' DITAMBAH BONUS MENJADI '+hadiah+' SILAHKAN SHOPING - SHOPING!!');
+}
+else{
+  alert('BAGUS SEKALI '+nama+', ANDA BERHASIL MEMBAWA UANG SEBESAR '+hadiah+'\nSELAMAT SHOPING-SHOPING!!');
+}
